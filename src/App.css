@@ -1,44 +1,36 @@
-.App {
+.container {
   margin: 0 auto;
-  background-color: #f4f5f6;
-}
-
-.form-section-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.form-section {
-  background-color: #ffffff;
-  height: 140px;
-  width: 100%;
+  max-width: 1280px;
   display: grid;
-  grid-template-columns: 260px 3fr;
-  margin: 0 auto;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 160px auto;
 }
 
-.info-section {
+.info-area {
   text-align: right;
   margin-right: 40px;
-  width: 204px;
   align-content: center;
 }
 
-.info-section h3 {
+.info-area h3 {
   font-weight: 900;
   line-height: 1em;
   margin: 36px 0 8px;
 }
 
-.info-section p {
+.info-area p {
   font-family: "SF Mono", Courier, monospace;
   font-size: 14px;
   color: #33363980;
   margin-top: 4px;
 }
 
+.form-area {
+  padding-left: 22px;
+  padding-right: 84px;
+}
+
 form {
-  width: 900px;
   margin-top: 20px;
 }
 
@@ -102,16 +94,12 @@ input[type="date"]:focus {
   outline: none;
 }
 
-.list-section {
-  width: 100%;
-  height: 1600px;
-  margin: 20px auto;
-  padding-top: 12px;
+.left-sidebar {
   background-color: #f4f5f6;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  height: 1200px;
 }
 
-.content-area {
-  max-width: 1200px;
+.task-board {
+  background-color: #f4f5f6;
+  height: 1200px;
 }
