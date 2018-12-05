@@ -1,0 +1,60 @@
+.plan-list {
+  width: 300px;
+  list-style-type: none;
+  background-color: #f1f3f5;
+  padding: 16px 12px;
+}
+
+.plan-list li {
+  width: 80%;
+  margin: 10px auto;
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px 12px;
+  transition: all 0.2s ease;
+}
+
+.plan-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px #45454510;
+}
+
+.task-text {
+  font-size: 16px;
+  color: #454545;
+  font-weight: normal;
+  line-height: 1.3em;
+  margin: 10px auto;
+}
+
+.task-details {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 8px;
+  align-items: start;
+}
+
+.task-project {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0fe4ae;
+  display: inline;
+  text-decoration: none;
+}
+
+.task-assignee {
+  font-size: 13px;
+  font-weight: 500;
+  color: #423ff5;
+  display: inline;
+  text-decoration: none;
+}
+
+.task-date {
+  font-size: 13px;
+  font-weight: 500;
+  color: #b8b8b8;
+  display: inline;
+  margin: 0 0;
+  justify-self: end;
+}
