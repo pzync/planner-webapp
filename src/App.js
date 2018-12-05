@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import TaskCard from "./components/taskCard";
+import TaskBoard from "./components/taskBoard";
 
 const today = new Date();
 
@@ -72,7 +72,7 @@ class App extends Component {
           </div>
         </form>
         <div className="list-area">
-          <TaskCard taskList={this.state.taskList} />
+          <TaskBoard taskList={this.state.taskList} />
         </div>
       </div>
     );

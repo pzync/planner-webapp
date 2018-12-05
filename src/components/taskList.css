@@ -2,7 +2,7 @@
   width: 300px;
   list-style-type: none;
   background-color: #f1f3f5;
-  padding: 16px 12px;
+  padding: 0 12px;
 }
 
 .plan-list li {
@@ -10,7 +10,7 @@
   margin: 10px auto;
   background-color: white;
   border-radius: 8px;
-  padding: 12px 12px;
+  padding: 8px 12px;
   transition: all 0.2s ease;
 }
 
@@ -20,11 +20,11 @@
 }
 
 .task-text {
-  font-size: 16px;
+  font-size: 15px;
   color: #454545;
   font-weight: normal;
   line-height: 1.3em;
-  margin: 10px auto;
+  margin: 8px auto;
 }
 
 .task-details {
@@ -32,12 +32,13 @@
   grid-template-columns: repeat(3, auto);
   grid-gap: 8px;
   align-items: start;
+  margin-top: 12px;
 }
 
 .task-project {
   font-size: 13px;
   font-weight: 500;
-  color: #0fe4ae;
+  color: #f53f94;
   display: inline;
   text-decoration: none;
 }

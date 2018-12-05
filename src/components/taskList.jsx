@@ -1,7 +1,7 @@
 import React from "react";
-import "./taskCard.css";
+import "./taskList.css";
 
-const TaskCard = ({ taskList }) => {
+const TaskList = ({ taskList }) => {
   return (
     <ul className="plan-list">
       {taskList.map(task => (
@@ -22,4 +22,4 @@ const TaskCard = ({ taskList }) => {
   );
 };
 
-export default TaskCard;
+export default TaskList;
