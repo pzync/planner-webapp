@@ -24,6 +24,8 @@ class App extends Component {
       ]
     });
 
+    // these clear out the inputs once entered, sets the date to today
+    // and moves the focus back to primary task input field
     this.refs.task.value = "";
     this.refs.project.value = "";
     this.refs.assignee.value = "";
@@ -35,6 +37,23 @@ class App extends Component {
   componentDidMount() {
     // this keeps the task input field in focus when the page loads
     this.refs.task.focus();
+
+    // fetch the taskList from localStorage when the page loads
+    const json = localStorage.getItem("taskList");
+    const taskList = JSON.parse(json);
+
+    // without this if statement, a null value would update state.taskList
+    // which would give errors in taskBoard.jsx because we'll applying .filter on
+    // a null value
+    if (taskList) {
+      this.setState({ taskList });
+    }
+  }
+
+  componentDidUpdate() {
+    //store in localStorate the taskList each time it updates
+    const taskList = JSON.stringify(this.state.taskList);
+    localStorage.setItem("taskList", taskList);
   }
 
   render() {

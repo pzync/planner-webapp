@@ -4,14 +4,12 @@ import TaskList from "./taskList";
 
 // getting today and tomorrow dates
 // based on https://stackoverflow.com/questions/563406/add-days-to-javascript-date
-
 let today = new Date();
 let tomorrow = new Date();
 tomorrow.setDate(today.getDate() + 1);
 
 // converting today and tomorrow dates to formats required to compare with
 // string date formats coming in from state.taskList 's task.workDate
-
 today = today.toISOString().substr(0, 10);
 tomorrow = tomorrow.toISOString().substr(0, 10);
 
