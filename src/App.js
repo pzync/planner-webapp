@@ -61,43 +61,51 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="task-input"
-            type="text"
-            placeholder="Describe task here"
-            ref="task"
-          />
-          <div className="second-row">
-            <input
-              className="project-input"
-              type="text"
-              placeholder="For Project"
-              ref="project"
-            />
-            <input
-              className="assignee-input"
-              type="text"
-              placeholder="Assigned to"
-              ref="assignee"
-            />
-            <input
-              className="date-input"
-              type="date"
-              defaultValue={today.toISOString().substr(0, 10)}
-              ref="workdate"
-            />
-            <button className="submit-button" type="submit">
-              Add
-            </button>
+        <div className="form-section-container">
+          <div className="form-section">
+            <div className="info-section">
+              <h3>Shekhar's Plan</h3>
+              <p>{today.toGMTString().substr(0, 16)}</p>
+            </div>
+            <form onSubmit={this.handleSubmit}>
+              <input
+                className="task-input"
+                type="text"
+                placeholder="Describe task here"
+                ref="task"
+              />
+              <div className="second-row">
+                <input
+                  className="project-input"
+                  type="text"
+                  placeholder="For Project"
+                  ref="project"
+                />
+                <input
+                  className="assignee-input"
+                  type="text"
+                  placeholder="Assigned to"
+                  ref="assignee"
+                />
+                <input
+                  className="date-input"
+                  type="date"
+                  defaultValue={today.toISOString().substr(0, 10)}
+                  ref="workdate"
+                />
+                <button className="submit-button" type="submit">
+                  Add
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-        <div className="list-section">
+        </div>
+        <div className="list-section content-area">
           <div className="left-sidebar">
             <ProjectList taskList={this.state.taskList} />
             <PeopleList taskList={this.state.taskList} />
           </div>
-          <TaskBoard taskList={this.state.taskList} />
+          <TaskBoard className="task-board" taskList={this.state.taskList} />
         </div>
       </div>
     );

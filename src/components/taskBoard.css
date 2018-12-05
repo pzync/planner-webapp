@@ -2,11 +2,12 @@
   width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 300px);
 }
 
 .task-board h2 {
   padding-left: 32px;
   padding-bottom: 0;
   font-size: 20px;
+  font-weight: 600;
 }
