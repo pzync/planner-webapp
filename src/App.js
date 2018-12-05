@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import TaskBoard from "./components/taskBoard";
+import ProjectList from "./components/projectList";
+import PeopleList from "./components/peopleList";
 
 const today = new Date();
 
@@ -90,7 +92,11 @@ class App extends Component {
             </button>
           </div>
         </form>
-        <div className="list-area">
+        <div className="list-section">
+          <div className="left-sidebar">
+            <ProjectList taskList={this.state.taskList} />
+            <PeopleList taskList={this.state.taskList} />
+          </div>
           <TaskBoard taskList={this.state.taskList} />
         </div>
       </div>

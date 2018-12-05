@@ -1,0 +1,27 @@
+.project-list-section {
+  margin-right: 36px;
+  margin-top: 52px;
+}
+
+.project-list-section h6 {
+  font-weight: 200;
+  text-align: right;
+  margin: 10px 40px 8px;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.project-list {
+  list-style: none;
+  text-align: right;
+  margin-right: 40px;
+}
+
+.project-list-item {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #f53f94;
+}
