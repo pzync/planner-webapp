@@ -63,10 +63,10 @@ input[type="text"]:focus {
 }
 
 .submit-button {
-  background-color: #0099ff;
+  background-color: #1dd8b0;
   border: none;
   border-radius: 20px;
-  padding: 13px 20px 10px;
+  padding: 13px 20px 12px;
   margin: 8px 24px;
   font-size: 14px;
   font-weight: 800;
@@ -102,4 +102,16 @@ input[type="date"]:focus {
 .task-board {
   background-color: #f4f5f6;
   height: 1200px;
+}
+
+/* for simple ease and settle in place animation for the entire app 
+- on page load */
+.fade-appear {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 500ms ease-out;
 }

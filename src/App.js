@@ -3,6 +3,7 @@ import "./App.css";
 import TaskBoard from "./components/taskBoard";
 import ProjectList from "./components/projectList";
 import PeopleList from "./components/peopleList";
+import { CSSTransition } from "react-transition-group";
 
 const today = new Date();
 
@@ -61,48 +62,50 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
-          <div className="info-area">
-            <h3>Shekhar's Plan</h3>
-            <p>{today.toGMTString().substr(0, 16)}</p>
-          </div>
-          <form className="form-area" onSubmit={this.handleSubmit}>
-            <input
-              className="task-input"
-              type="text"
-              placeholder="Describe task here"
-              ref="task"
-            />
-            <div className="second-row">
-              <input
-                className="project-input"
-                type="text"
-                placeholder="For Project"
-                ref="project"
-              />
-              <input
-                className="assignee-input"
-                type="text"
-                placeholder="Assigned to"
-                ref="assignee"
-              />
-              <input
-                className="date-input"
-                type="date"
-                defaultValue={today.toISOString().substr(0, 10)}
-                ref="workdate"
-              />
-              <button className="submit-button" type="submit">
-                Add
-              </button>
+        <CSSTransition in={true} appear={true} timeout={500} classNames="fade">
+          <div className="container">
+            <div className="info-area">
+              <h3>Shekhar's Plan</h3>
+              <p>{today.toGMTString().substr(0, 16)}</p>
             </div>
-          </form>
-          <div className="left-sidebar">
-            <ProjectList taskList={this.state.taskList} />
-            <PeopleList taskList={this.state.taskList} />
+            <form className="form-area" onSubmit={this.handleSubmit}>
+              <input
+                className="task-input"
+                type="text"
+                placeholder="Describe task here"
+                ref="task"
+              />
+              <div className="second-row">
+                <input
+                  className="project-input"
+                  type="text"
+                  placeholder="For Project"
+                  ref="project"
+                />
+                <input
+                  className="assignee-input"
+                  type="text"
+                  placeholder="Assigned to"
+                  ref="assignee"
+                />
+                <input
+                  className="date-input"
+                  type="date"
+                  defaultValue={today.toISOString().substr(0, 10)}
+                  ref="workdate"
+                />
+                <button className="submit-button" type="submit">
+                  Add
+                </button>
+              </div>
+            </form>
+            <div className="left-sidebar">
+              <ProjectList taskList={this.state.taskList} />
+              <PeopleList taskList={this.state.taskList} />
+            </div>
+            <TaskBoard className="task-board" taskList={this.state.taskList} />
           </div>
-          <TaskBoard className="task-board" taskList={this.state.taskList} />
-        </div>
+        </CSSTransition>
       </div>
     );
   }

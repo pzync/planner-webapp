@@ -58,3 +58,25 @@
   margin: 0 0;
   justify-self: end;
 }
+
+.todoAnim-enter {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.todoAnim-enter.todoAnim-enter-active {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 500ms ease-out;
+}
+
+.todoAnim-exit {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.todoAnim-exit.todoAnim-exit-active {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 500ms ease-out;
+}
