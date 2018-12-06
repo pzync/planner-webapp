@@ -19,11 +19,12 @@ class App extends Component {
     let project = this.refs.project.value;
     let assignee = this.refs.assignee.value;
     let workDate = this.refs.workdate.value;
+    let isDone = false; // setting the task default status to 'not done'
 
     this.setState({
       taskList: [
         ...this.state.taskList,
-        { id, taskName, project, assignee, workDate }
+        { id, taskName, project, assignee, workDate, isDone }
       ]
     });
 
@@ -39,6 +40,14 @@ class App extends Component {
 
   handleDelete = id => {
     const taskList = this.state.taskList.filter(task => task.id !== id);
+    this.setState({ taskList });
+  };
+
+  handleDone = task => {
+    const taskList = [...this.state.taskList];
+    const index = taskList.indexOf(task);
+    taskList[index] = { ...task };
+    taskList[index].isDone = true;
     this.setState({ taskList });
   };
 
@@ -112,6 +121,7 @@ class App extends Component {
               className="task-board"
               taskList={this.state.taskList}
               onDelete={this.handleDelete}
+              onDone={this.handleDone}
             />
           </div>
         </CSSTransition>

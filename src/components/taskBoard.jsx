@@ -13,7 +13,7 @@ tomorrow.setDate(today.getDate() + 1);
 today = today.toISOString().substr(0, 10);
 tomorrow = tomorrow.toISOString().substr(0, 10);
 
-const TaskBoard = ({ taskList, onDelete }) => {
+const TaskBoard = ({ taskList, onDelete, onDone }) => {
   const todayList = taskList.filter(task => task.workDate === today);
   const tomorrowList = taskList.filter(task => task.workDate === tomorrow);
   const laterList = taskList.filter(
@@ -24,15 +24,15 @@ const TaskBoard = ({ taskList, onDelete }) => {
     <div className="task-board">
       <div className="task-list today-list">
         <h2>Today</h2>
-        <TaskList taskList={todayList} onDelete={onDelete} />
+        <TaskList taskList={todayList} onDelete={onDelete} onDone={onDone} />
       </div>
       <div className="task-list tomorrow-list">
         <h2>Tomorrow</h2>
-        <TaskList taskList={tomorrowList} onDelete={onDelete} />
+        <TaskList taskList={tomorrowList} onDelete={onDelete} onDone={onDone} />
       </div>
       <div className="task-list later-list">
         <h2>Later</h2>
-        <TaskList taskList={laterList} onDelete={onDelete} />
+        <TaskList taskList={laterList} onDelete={onDelete} onDone={onDone} />
       </div>
     </div>
   );
