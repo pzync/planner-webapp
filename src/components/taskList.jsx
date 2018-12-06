@@ -2,7 +2,7 @@ import React from "react";
 import "./taskList.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-const TaskList = ({ taskList }) => {
+const TaskList = ({ taskList, onDelete }) => {
   return (
     <ul className="plan-list">
       <TransitionGroup>
@@ -11,7 +11,12 @@ const TaskList = ({ taskList }) => {
             <li key={task.id}>
               <div className="card-action">
                 <button className="done-button">&#10003; MARK DONE</button>
-                <button className="delete-button">DEL</button>
+                <button
+                  className="delete-button"
+                  onClick={() => onDelete(task.id)}
+                >
+                  DEL
+                </button>
               </div>
               <h5 className="task-text">{task.taskName}</h5>
               <div className="task-details">

@@ -7,7 +7,6 @@ const ProjectList = ({ taskList }) => {
 
   // to make a new array from all unique values from an array
   let uniqueProjectList = [...new Set(projectList)];
-  console.log(uniqueProjectList);
 
   return (
     <div className="project-list-section">

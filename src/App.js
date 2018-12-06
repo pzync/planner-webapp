@@ -37,6 +37,11 @@ class App extends Component {
     this.refs.task.focus();
   };
 
+  handleDelete = id => {
+    const taskList = this.state.taskList.filter(task => task.id !== id);
+    this.setState({ taskList });
+  };
+
   componentDidMount() {
     // this keeps the task input field in focus when the page loads
     this.refs.task.focus();
@@ -103,7 +108,11 @@ class App extends Component {
               <ProjectList taskList={this.state.taskList} />
               <PeopleList taskList={this.state.taskList} />
             </div>
-            <TaskBoard className="task-board" taskList={this.state.taskList} />
+            <TaskBoard
+              className="task-board"
+              taskList={this.state.taskList}
+              onDelete={this.handleDelete}
+            />
           </div>
         </CSSTransition>
       </div>
