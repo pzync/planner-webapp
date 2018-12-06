@@ -11,6 +11,7 @@
   border-radius: 8px;
   padding: 8px 12px;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .plan-list li:hover {
@@ -37,7 +38,7 @@
 .task-project {
   font-size: 13px;
   font-weight: 500;
-  color: #f53f94;
+  color: #f53f9480;
   display: inline;
   text-decoration: none;
 }
@@ -45,7 +46,7 @@
 .task-assignee {
   font-size: 13px;
   font-weight: 500;
-  color: #423ff5;
+  color: #423ff580;
   display: inline;
   text-decoration: none;
 }
@@ -58,6 +59,45 @@
   margin: 0 0;
   justify-self: end;
 }
+
+/* styling the task card action bar that appears on hover */
+
+li:hover .card-action {
+  opacity: 1;
+  margin-bottom: 18px;
+}
+
+.card-action {
+  opacity: 0;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.delete-button {
+  position: absolute;
+  right: 12px;
+  top: 6px;
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 800;
+  color: white;
+  background-color: #f53f3f;
+  border: none;
+  border-radius: 10px;
+}
+
+.done-button {
+  position: absolute;
+  top: 6px;
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: 800;
+  color: #1dd8b0;
+  border: 1px solid #1dd8b0;
+  border-radius: 10px;
+}
+
+/* for enter and exit animations of task card */
 
 .todoAnim-enter {
   opacity: 0;

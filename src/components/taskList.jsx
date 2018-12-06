@@ -9,6 +9,10 @@ const TaskList = ({ taskList }) => {
         {taskList.map(task => (
           <CSSTransition key={task.id} timeout={500} classNames="todoAnim">
             <li key={task.id}>
+              <div className="card-action">
+                <button className="done-button">&#10003; MARK DONE</button>
+                <button className="delete-button">DEL</button>
+              </div>
               <h5 className="task-text">{task.taskName}</h5>
               <div className="task-details">
                 <a href={`/#${task.project}`} className="task-project">{`#${
