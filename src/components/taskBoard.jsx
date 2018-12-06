@@ -16,9 +16,7 @@ tomorrow = tomorrow.toISOString().substr(0, 10);
 const TaskBoard = ({ taskList, onDelete, onDone }) => {
   const todayList = taskList.filter(task => task.workDate === today);
   const tomorrowList = taskList.filter(task => task.workDate === tomorrow);
-  const laterList = taskList.filter(
-    task => task.workDate !== tomorrow && task.workDate !== today
-  );
+  const laterList = taskList.filter(task => task.workDate > tomorrow);
 
   return (
     <div className="task-board">
