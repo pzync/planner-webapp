@@ -13,24 +13,58 @@ tomorrow.setDate(today.getDate() + 1);
 today = today.toISOString().substr(0, 10);
 tomorrow = tomorrow.toISOString().substr(0, 10);
 
-const TaskBoard = ({ taskList, onDelete, onDone }) => {
+const TaskBoard = ({
+  taskList,
+  onDelete,
+  onDone,
+  onDragBegin,
+  onDragEnding,
+  onDropping
+}) => {
   const todayList = taskList.filter(task => task.workDate === today);
   const tomorrowList = taskList.filter(task => task.workDate === tomorrow);
   const laterList = taskList.filter(task => task.workDate > tomorrow);
 
   return (
     <div className="task-board">
-      <div className="task-list today-list">
+      <div
+        className="task-list today-list"
+        onDragOver={e => onDragEnding(e)}
+        onDrop={e => onDropping(e, "today")}
+      >
         <h2>Today</h2>
-        <TaskList taskList={todayList} onDelete={onDelete} onDone={onDone} />
+        <TaskList
+          taskList={todayList}
+          onDelete={onDelete}
+          onDone={onDone}
+          onDragBegin={onDragBegin}
+        />
       </div>
-      <div className="task-list tomorrow-list">
+      <div
+        className="task-list tomorrow-list"
+        onDragOver={e => onDragEnding(e)}
+        onDrop={e => onDropping(e, "tomorrow")}
+      >
         <h2>Tomorrow</h2>
-        <TaskList taskList={tomorrowList} onDelete={onDelete} onDone={onDone} />
+        <TaskList
+          taskList={tomorrowList}
+          onDelete={onDelete}
+          onDone={onDone}
+          onDragBegin={onDragBegin}
+        />
       </div>
-      <div className="task-list later-list">
+      <div
+        className="task-list later-list"
+        onDragOver={e => onDragEnding(e)}
+        onDrop={e => onDropping(e, "later")}
+      >
         <h2>Later</h2>
-        <TaskList taskList={laterList} onDelete={onDelete} onDone={onDone} />
+        <TaskList
+          taskList={laterList}
+          onDelete={onDelete}
+          onDone={onDone}
+          onDragBegin={onDragBegin}
+        />
       </div>
     </div>
   );

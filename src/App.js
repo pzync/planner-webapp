@@ -5,7 +5,15 @@ import ProjectList from "./components/projectList";
 import PeopleList from "./components/peopleList";
 import { CSSTransition } from "react-transition-group";
 
-const today = new Date();
+let today = new Date();
+let tomorrow = new Date();
+let later = new Date();
+tomorrow.setDate(today.getDate() + 1);
+later.setDate(today.getDate() + 14);
+
+// today = today.toISOString().substr(0, 10);
+// tomorrow = tomorrow.toISOString().substr(0, 10);
+// later = later.toISOString().substr(0, 10);
 
 class App extends Component {
   state = {
@@ -14,7 +22,7 @@ class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    let id = Math.floor(Math.random() * 100) + 1;
+    let id = Math.floor(Math.random() * 1000) + 1;
     let taskName = this.refs.task.value;
     let project = this.refs.project.value;
     let assignee = this.refs.assignee.value;
@@ -48,6 +56,57 @@ class App extends Component {
     const index = taskList.indexOf(task);
     taskList[index] = { ...task };
     taskList[index].isDone = true;
+    this.setState({ taskList });
+  };
+
+  handleDragBegin = (e, task) => {
+    e.dataTransfer.setData("id", task.id);
+    // it seems the setData() can only carry a single, simple data item
+    // having it carry the object was giving issues
+    //maybe just like localStorage setItem(), i could have first converted
+    // the task object to a string and then had it carried
+
+    // IMP: essentially the dataTransfer setData and getData function almost
+    // exactly like localStorage setItem and getItem
+  };
+
+  handleDragEnding = e => {
+    e.preventDefault();
+  };
+
+  handleDropping = (e, listTitle) => {
+    let id = e.dataTransfer.getData("id");
+    // IMP: remember the e.dataTransfer.getData() function outputs a string
+    // just like the localStorage getItem()
+    // because strings are the easiest to carry data and can be parsed later into
+    // a readable required format
+    // so this id is a string and not a Number
+
+    let finalDate =
+      listTitle === "today"
+        ? today.toISOString().substr(0, 10)
+        : listTitle === "tomorrow"
+        ? tomorrow.toISOString().substr(0, 10)
+        : later.toISOString().substr(0, 10);
+
+    const taskList = [...this.state.taskList];
+    console.log(id, typeof id, listTitle);
+
+    const index = taskList.findIndex(task => task.id === Number(id));
+    // damn! this id was a string and i was comparing it with task.id which is a number
+    // no wonder i was getting Undefined as the value of 'index'
+    // so the above typeof console log really helped me understand that
+    // i was comparing id's of two different types
+
+    // IMP: remember the e.dataTransfer.getData() function outputs a string
+    // #typeChecking is important, man!
+
+    const taskToUpdate = taskList.find(task => task.id === Number(id));
+    taskList[index] = { ...taskToUpdate };
+    // if i don't do the above spread-copying of taskToUpdate
+    // since this is deep-copy, it will update at source
+
+    taskList[index].workDate = finalDate;
     this.setState({ taskList });
   };
 
@@ -122,6 +181,9 @@ class App extends Component {
               taskList={this.state.taskList}
               onDelete={this.handleDelete}
               onDone={this.handleDone}
+              onDragBegin={this.handleDragBegin}
+              onDragEnding={this.handleDragEnding}
+              onDropping={this.handleDropping}
             />
           </div>
         </CSSTransition>

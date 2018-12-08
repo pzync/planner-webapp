@@ -2,13 +2,13 @@ import React from "react";
 import "./taskList.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-const TaskList = ({ taskList, onDelete, onDone }) => {
+const TaskList = ({ taskList, onDelete, onDone, onDragBegin }) => {
   return (
     <ul className="plan-list">
       <TransitionGroup>
         {taskList.map(task => (
           <CSSTransition key={task.id} timeout={500} classNames="todoAnim">
-            <li key={task.id}>
+            <li key={task.id} draggable onDragStart={e => onDragBegin(e, task)}>
               <div className="card-action">
                 <button className="done-button" onClick={() => onDone(task)}>
                   &#10003; MARK DONE
