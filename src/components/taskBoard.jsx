@@ -19,7 +19,9 @@ const TaskBoard = ({
   onDone,
   onDragBegin,
   onDragEnding,
-  onDropping
+  onDropping,
+  onFileDragOver,
+  onFileDrop
 }) => {
   const todayList = taskList.filter(task => task.workDate === today);
   const tomorrowList = taskList.filter(task => task.workDate === tomorrow);
@@ -38,6 +40,8 @@ const TaskBoard = ({
           onDelete={onDelete}
           onDone={onDone}
           onDragBegin={onDragBegin}
+          onFileDragOver={onFileDragOver}
+          onFileDrop={onFileDrop}
         />
       </div>
       <div
@@ -51,6 +55,8 @@ const TaskBoard = ({
           onDelete={onDelete}
           onDone={onDone}
           onDragBegin={onDragBegin}
+          onFileDragOver={onFileDragOver}
+          onFileDrop={onFileDrop}
         />
       </div>
       <div
@@ -64,6 +70,8 @@ const TaskBoard = ({
           onDelete={onDelete}
           onDone={onDone}
           onDragBegin={onDragBegin}
+          onFileDragOver={onFileDragOver}
+          onFileDrop={onFileDrop}
         />
       </div>
     </div>

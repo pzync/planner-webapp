@@ -90,7 +90,7 @@ class App extends Component {
         : later.toISOString().substr(0, 10);
 
     const taskList = [...this.state.taskList];
-    console.log(id, typeof id, listTitle);
+    // console.log(id, typeof id, listTitle);
 
     const index = taskList.findIndex(task => task.id === Number(id));
     // damn! this id was a string and i was comparing it with task.id which is a number
@@ -108,6 +108,46 @@ class App extends Component {
 
     taskList[index].workDate = finalDate;
     this.setState({ taskList });
+  };
+
+  handleFileDragOver = e => {
+    e.preventDefault();
+  };
+
+  removeFileDragData = e => {
+    e.dataTransfer.items.clear();
+  };
+
+  handleFileDrop = e => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.items[0].getAsFile();
+    // console.log(e.dataTransfer.getData("text/uri"));
+    console.log(droppedFile);
+
+    // pass event to removeFileDragData for cleanup
+    this.removeFileDragData(e);
+
+    // TODO: try to understand the below code in this handler function
+    // especially how the callback has been used
+    const readFile = (file, callback) => {
+      var reader = new FileReader();
+
+      // reference: https://developer.mozilla.org/en-US/docs/Web/API/FileReader/result
+      // also refer to Sathya's code for SVG DragNDrop at https://codeshare.io/aVeRvb
+      reader.onload = function(file) {
+        if (reader.readyState === 2) {
+          callback(reader.result);
+        }
+      };
+
+      reader.readAsBinaryString(file);
+    };
+
+    const pubOutput = fileBinary => {
+      console.log(fileBinary);
+    };
+
+    readFile(droppedFile, pubOutput);
   };
 
   componentDidMount() {
@@ -184,6 +224,8 @@ class App extends Component {
               onDragBegin={this.handleDragBegin}
               onDragEnding={this.handleDragEnding}
               onDropping={this.handleDropping}
+              onFileDragOver={this.handleFileDragOver}
+              onFileDrop={this.handleFileDrop}
             />
           </div>
         </CSSTransition>
